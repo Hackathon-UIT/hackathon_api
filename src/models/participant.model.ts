@@ -8,7 +8,15 @@ export default class ParticipantModel {
                 return response;
             });
     }
-
+    findParticipantsEvent(event_id: number) {
+        return db('participant')
+            .where('id_event', event_id)
+            .then((response) => {
+                if (!response)
+                    return []
+                return response;
+            });
+    }
 
 
 

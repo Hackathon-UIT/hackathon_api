@@ -72,6 +72,14 @@ export default class PaymentController {
             next(error)
         }
     }
+    async createPayment(req: Request, res: Response, next: NextFunction) {
+        const { event_id } = req.params
+        res.json({
+            data: {
+                image: `https://img.vietqr.io/image/mbbank-1230103032001-compact2.jpg?addInfo=PAYMENT${event_id}`
+            }
+        })
+    }
 }
 function getOrderId(description) {
     const regex = new RegExp(/ORDER\s*(\d+)/, 'i');

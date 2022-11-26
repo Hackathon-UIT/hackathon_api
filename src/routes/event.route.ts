@@ -13,6 +13,8 @@ class EventRoutes {
             .post(this.eventController.createEvent);
         this.router.route('/events')
             .get(this.eventController.getEvents);
+        this.router.route('/events/:event_id')
+            .get(this.eventController.getInfoEvent);
 
     }
 }

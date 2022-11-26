@@ -15,6 +15,8 @@ class RoutePayment {
             .post(this.paymentController.Webhook);
         this.router.route('/register-webhook')
             .post(this.paymentController.registerWebhook);
+        this.router.route('/payment/:event_id')
+            .post(this.paymentController.createPayment);
     }
 }
 

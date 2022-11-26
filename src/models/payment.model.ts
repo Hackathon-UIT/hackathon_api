@@ -17,4 +17,12 @@ export default class PaymentModel {
                 return response;
             });
     }
+    getPaymentsByEvent(event_id: number) {
+        return db('payment')
+            .where('description', 'like', `%PAYMENT${event_id}%`)
+            .then((response) => {
+                if (response.length == 0) return [];
+                return response;
+            });
+    }
 }
