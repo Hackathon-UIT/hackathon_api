@@ -14,6 +14,15 @@ export default class EventModel {
                 return response;
             });
     }
+    findEventById(event_id: number) {
+        return db('event')
+            .where('id', event_id)
+            .then((response) => {
+                if (!response)
+                    return null
+                return response[0];
+            });
+    }
 
 
 
