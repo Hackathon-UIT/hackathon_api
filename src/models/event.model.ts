@@ -10,6 +10,7 @@ export default class EventModel {
     }
     getEvent() {
         return db('event')
+            .orderBy('start_day', 'desc')
             .then((response) => {
                 return response;
             });
@@ -21,6 +22,14 @@ export default class EventModel {
                 if (!response)
                     return null
                 return response[0];
+            });
+    }
+    updateEvent(event_id: number, data: object) {
+        return db('event')
+            .where('id', event_id)
+            .update(data)
+            .then((response) => {
+                return response;
             });
     }
 

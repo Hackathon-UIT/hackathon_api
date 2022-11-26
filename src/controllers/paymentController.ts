@@ -5,6 +5,7 @@ import ExtendFunc from '../utils/extendFunc';
 import Webhook from '../utils/webhook.util'
 import UserInfo from '../utils/get_user_info.util'
 import SyncTransaction from '../utils/sync.util'
+import PaymentModel from '../models/payment.model';
 
 
 const webhookUtil = new Webhook();
@@ -73,6 +74,14 @@ export default class PaymentController {
         }
     }
     async createPayment(req: Request, res: Response, next: NextFunction) {
+        const data = req.body
+        modelPayment.createPayment(data)
+            .then(result => {
+                res.json({ message: 'tao payment thanh cong' })
+            })
+            .catch(err => res.status(400).json({ message: err }))
+    }
+    async createLinkTransfer(req: Request, res: Response, next: NextFunction) {
         const { event_id } = req.params
         res.json({
             data: {

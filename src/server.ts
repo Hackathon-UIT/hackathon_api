@@ -44,10 +44,9 @@ class Server {
         this.app.set('port', process.env.PORT || 4000);
         // middlewares
         this.app.use(morgan('dev'))
-
             .use(helmet())
             .use(compression())
-            .use(cors())
+            .use(cors({ origin: true, credentials: true, exposedHeaders: ['Set-Cookie', 'Date', 'ETag'] }))
             .use(limiter)
             .use(session({
                 resave: true,
@@ -77,6 +76,7 @@ class Server {
         this.app.listen(this.app.get('port'), async () => {
             console.log('Server is listenning on port', this.app.get('port'));
         });
+        this.app.use(express.static('client'))
     }
 }
 

@@ -15,6 +15,8 @@ class EventRoutes {
             .get(this.eventController.getEvents);
         this.router.route('/events/:event_id')
             .get(this.eventController.getInfoEvent);
+        this.router.route('/events/:event_id')
+            .put(this.eventController.updateEvent);
 
     }
 }
