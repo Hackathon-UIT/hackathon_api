@@ -32,7 +32,7 @@ export default class EventController {
             let totalAmount = await paymentModel.sumAmountPaymentById(events[i].id)
             formatEvents.push({
                 ...events[i],
-                totalAmount: Number.isInteger(totalAmount.sum) ? totalAmount.sum : 0
+                total_amount: Number.isInteger(totalAmount.sum) ? totalAmount.sum : 0
             })
         }
         let newEvents = await Promise.all(formatEvents)
